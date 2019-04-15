@@ -42,11 +42,6 @@ android {
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [moduleName: project.getName()]
-            }
-        }
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
 
