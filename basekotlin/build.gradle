@@ -42,11 +42,6 @@ android {
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [moduleName: project.getName()]
-            }
-        }
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
 
@@ -102,7 +97,6 @@ dependencies {
     implementation "com.github.chrisbanes:PhotoView:${libs.PhotoView}"
     //Arouter 路由跳转工具
     api "com.alibaba:arouter-api:${libs.arouterapi}"
-    annotationProcessor "com.alibaba:arouter-compiler:${libs.aroutercompiler}"
 
     // Android 支持 Rxjava
 
