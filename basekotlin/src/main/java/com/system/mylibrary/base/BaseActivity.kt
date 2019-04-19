@@ -25,7 +25,7 @@ import java.util.HashMap
  * 创建时间：2018/4/2
  */
 
-abstract class BaseActivity<T> : SupportActivity() {
+abstract class BaseActivity<T :Any> : SupportActivity() {
     //lateinit  修饰符 变量需要在定义之后赋值
     lateinit var mtoken: String
     lateinit var mUser: String

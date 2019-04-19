@@ -27,7 +27,7 @@ import java.util.HashMap
  * 创建时间：2018/4/2
  */
 
-abstract class BaseFragment<T> : SupportFragment() {
+abstract class BaseFragment<T:Any> : SupportFragment() {
     /*分页相关*/
     /* 每页最大分页数量 */
     var mPageSize = 20
