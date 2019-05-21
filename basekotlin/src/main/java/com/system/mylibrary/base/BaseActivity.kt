@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import butterknife.ButterKnife
 import com.alibaba.android.arouter.launcher.ARouter
 import com.google.gson.Gson
+import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.system.mylibrary.BaseConfig
@@ -67,6 +68,7 @@ abstract class BaseActivity<T :Any> : SupportActivity() {
         //Arouter注入
         ARouter.getInstance().inject(this)
         initInfo()
+        initViewModel()
         initDatas()
         LiveEventBus.get()
             .with("base_activity", String::class.java)
@@ -75,6 +77,7 @@ abstract class BaseActivity<T :Any> : SupportActivity() {
                     "initInfo" -> initInfo()
                 }
             })
+
     }
 
     /**
@@ -111,13 +114,13 @@ abstract class BaseActivity<T :Any> : SupportActivity() {
      * 实现功能，填充数据
      * @param myProducts
      */
-    protected abstract fun dataCallBack(myProducts: T?)
+    protected abstract fun dataCallBack(myProducts: JsonObject)
 
     /**
      * 订阅数据
      * @param liveData
      */
-    protected fun subscribeUi(liveData: LiveData<T>) {
+    protected fun subscribeUi(liveData: LiveData<JsonObject>) {
         liveData.observe(this, Observer { myProducts -> dataCallBack(myProducts) })
     }
 

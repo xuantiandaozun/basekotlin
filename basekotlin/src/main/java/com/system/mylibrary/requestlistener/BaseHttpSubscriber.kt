@@ -45,8 +45,8 @@ class BaseHttpSubscriber(
             intent.putExtra("name", "logout")
             BaseMainApp.context!!.sendBroadcast(intent)
         } else {
-            val jsonObject = gson.fromJson(json, JsonObject::class.java)
-            jsonObject.addProperty("key", type)
+            var jsonObject = JsonObject()
+            jsonObject.addProperty(type, json)
             liveData.setValue(jsonObject)
         }
 
