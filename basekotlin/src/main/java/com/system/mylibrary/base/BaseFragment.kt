@@ -20,7 +20,6 @@ import com.system.mylibrary.utils.SPUtils
 import me.yokeyword.fragmentation.ISupportFragment
 import me.yokeyword.fragmentation.SupportFragment
 
-import java.lang.reflect.Type
 import java.util.HashMap
 
 /**

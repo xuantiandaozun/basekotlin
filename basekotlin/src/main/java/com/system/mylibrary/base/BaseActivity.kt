@@ -18,7 +18,6 @@ import me.yokeyword.fragmentation.SupportActivity
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator
 import me.yokeyword.fragmentation.anim.FragmentAnimator
 
-import java.lang.reflect.Type
 import java.util.HashMap
 
 /**

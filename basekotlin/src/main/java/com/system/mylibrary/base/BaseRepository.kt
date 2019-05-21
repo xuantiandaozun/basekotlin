@@ -18,18 +18,10 @@ import io.reactivex.schedulers.Schedulers
  */
 
 open class BaseRepository {
-    var liveData: MediatorLiveData<JsonObject>
+    var liveData: MediatorLiveData<JsonObject> = MediatorLiveData()
     /**
      * RxJava Subscriber回调
      */
     private val baseHttpSubscriber: BaseHttpSubscriber? = null
-
-    /**
-     * 初始化
-     * commonHttpSubscriber = new Common
-     */
-    init {
-        liveData = MediatorLiveData()
-    }
 
 }
