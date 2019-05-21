@@ -12,6 +12,7 @@ import butterknife.ButterKnife
 import butterknife.Unbinder
 import com.alibaba.android.arouter.launcher.ARouter
 import com.google.gson.Gson
+import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.system.mylibrary.BaseConfig
@@ -121,13 +122,13 @@ abstract class BaseFragment<T:Any> : SupportFragment() {
      * 实现功能，填充数据
      * @param myProducts
      */
-    protected abstract fun dataCallBack(myProducts: T?)
+    protected abstract fun dataCallBack(myProducts: JsonObject)
 
     /**
      * 订阅数据
      * @param liveData
      */
-    protected fun subscribeUi(liveData: LiveData<T>) {
+    protected fun subscribeUi(liveData: LiveData<JsonObject>) {
         liveData.observe(this, Observer { myProducts -> dataCallBack(myProducts) })
     }
 
