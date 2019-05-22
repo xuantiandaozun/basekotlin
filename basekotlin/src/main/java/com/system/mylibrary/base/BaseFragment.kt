@@ -133,7 +133,7 @@ abstract class BaseFragment : SupportFragment() {
      * 订阅加载失败数据
      * @param liveData
      */
-    protected fun subscribeErroUi(liveData: LiveData<JsonObject>) {
+    open fun subscribeErroUi(liveData: LiveData<JsonObject>) {
         liveData.observe(this, Observer { myProducts ->
             val keySet = myProducts.keySet()
             val iterator = keySet.iterator()
@@ -165,7 +165,7 @@ abstract class BaseFragment : SupportFragment() {
     /**
      * 关闭Fragment
      */
-    fun closeFragment() {
+    open fun closeFragment() {
         val bundle = Bundle()
         setFragmentResult(ISupportFragment.RESULT_OK, bundle)
         pop()
