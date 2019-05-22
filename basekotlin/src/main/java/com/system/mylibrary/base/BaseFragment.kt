@@ -126,7 +126,7 @@ abstract class BaseFragment : SupportFragment() {
      * 接口加载失败回调
      * @param key
      */
-    fun erroCallBack(key: String, value: JsonObject){
+    open fun erroCallBack(key: String, value: JsonObject){
 
     }
     /**
