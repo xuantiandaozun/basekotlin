@@ -118,7 +118,7 @@ abstract class BaseActivity : SupportActivity() {
      * 接口加载失败回调
      * @param myProducts
      */
-    protected  fun erroCallBack(myProducts: String, value: JsonObject){
+      fun erroCallBack(myProducts: String, value: JsonObject){
 
     }
 
