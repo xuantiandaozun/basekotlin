@@ -18,6 +18,7 @@ import java.net.ConnectException
 import java.net.SocketTimeoutException
 
 import androidx.lifecycle.MediatorLiveData
+import com.system.mylibrary.utils.GsonUtil
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import java.util.*
@@ -45,8 +46,9 @@ class BaseHttpSubscriber(
             intent.putExtra("name", "logout")
             BaseMainApp.context!!.sendBroadcast(intent)
         } else {
+            val gsonToBean = GsonUtil.GsonToBean(json, JsonObject::class.java)
             var jsonObject = JsonObject()
-            jsonObject.addProperty(type, json)
+            jsonObject.add(type, gsonToBean)
             liveData.setValue(jsonObject)
         }
 
