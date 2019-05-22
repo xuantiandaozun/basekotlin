@@ -25,7 +25,7 @@ import java.util.HashMap
  * 创建时间：2018/4/2
  */
 
-abstract class BaseActivity<T :Any> : SupportActivity() {
+abstract class BaseActivity : SupportActivity() {
     //lateinit  修饰符 变量需要在定义之后赋值
     lateinit var mtoken: String
     lateinit var mUser: String
@@ -110,17 +110,25 @@ abstract class BaseActivity<T :Any> : SupportActivity() {
     protected abstract fun initViewModel()
 
     /**
-     * 实现功能，填充数据
+     * 接口回调
      * @param myProducts
      */
-    protected abstract fun dataCallBack(myProducts: JsonObject)
+    protected abstract fun dataCallBack(myProducts: String, value: JsonObject)
 
     /**
      * 订阅数据
      * @param liveData
      */
     protected fun subscribeUi(liveData: LiveData<JsonObject>) {
-        liveData.observe(this, Observer { myProducts -> dataCallBack(myProducts) })
+        liveData.observe(this, Observer { myProducts ->
+            val keySet = myProducts.keySet()
+            val iterator = keySet.iterator()
+            while (iterator.hasNext()){
+                val next = iterator.next()
+                val value = myProducts.get(next).asJsonObject
+                dataCallBack(next,value)
+            }
+            })
     }
 
     override fun onCreateFragmentAnimator(): FragmentAnimator {

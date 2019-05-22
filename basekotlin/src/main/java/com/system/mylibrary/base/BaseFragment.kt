@@ -27,7 +27,7 @@ import java.util.HashMap
  * 创建时间：2018/4/2
  */
 
-abstract class BaseFragment<T:Any> : SupportFragment() {
+abstract class BaseFragment : SupportFragment() {
     /*分页相关*/
     /* 每页最大分页数量 */
     var mPageSize = 20
@@ -121,14 +121,23 @@ abstract class BaseFragment<T:Any> : SupportFragment() {
      * 实现功能，填充数据
      * @param myProducts
      */
-    protected abstract fun dataCallBack(myProducts: JsonObject)
+    protected abstract fun dataCallBack(myProducts: String, value: JsonObject)
 
     /**
      * 订阅数据
      * @param liveData
      */
     protected fun subscribeUi(liveData: LiveData<JsonObject>) {
-        liveData.observe(this, Observer { myProducts -> dataCallBack(myProducts) })
+        liveData.observe(this, Observer { myProducts ->
+            liveData.observe(this, Observer { myProducts ->
+                val keySet = myProducts.keySet()
+                val iterator = keySet.iterator()
+                while (iterator.hasNext()){
+                    val next = iterator.next()
+                    val value = myProducts.get(next).asJsonObject
+                    dataCallBack(next,value)
+                }
+            })})
     }
 
     /**
