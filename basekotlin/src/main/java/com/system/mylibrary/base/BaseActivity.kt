@@ -114,6 +114,13 @@ abstract class BaseActivity : SupportActivity() {
      * @param myProducts
      */
     protected abstract fun dataCallBack(myProducts: String, value: JsonObject)
+    /**
+     * 接口加载失败回调
+     * @param myProducts
+     */
+    protected  fun erroCallBack(myProducts: String, value: JsonObject){
+
+    }
 
     /**
      * 订阅数据
@@ -129,6 +136,21 @@ abstract class BaseActivity : SupportActivity() {
                 dataCallBack(next,value)
             }
             })
+    }
+    /**
+     * 订阅加载失败数据
+     * @param liveData
+     */
+    protected fun subscribeErroUi(liveData: LiveData<JsonObject>) {
+        liveData.observe(this, Observer { myProducts ->
+            val keySet = myProducts.keySet()
+            val iterator = keySet.iterator()
+            while (iterator.hasNext()){
+                val next = iterator.next()
+                val value = myProducts.get(next).asJsonObject
+                erroCallBack(next,value)
+            }
+        })
     }
 
     override fun onCreateFragmentAnimator(): FragmentAnimator {

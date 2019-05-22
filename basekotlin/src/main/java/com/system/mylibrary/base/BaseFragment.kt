@@ -119,9 +119,31 @@ abstract class BaseFragment : SupportFragment() {
 
     /**
      * 实现功能，填充数据
-     * @param myProducts
+     * @param key
      */
-    protected abstract fun dataCallBack(myProducts: String, value: JsonObject)
+    protected abstract fun dataCallBack(key: String, value: JsonObject)
+    /**
+     * 接口加载失败回调
+     * @param key
+     */
+    protected  fun erroCallBack(key: String, value: JsonObject){
+
+    }
+    /**
+     * 订阅加载失败数据
+     * @param liveData
+     */
+    protected fun subscribeErroUi(liveData: LiveData<JsonObject>) {
+        liveData.observe(this, Observer { myProducts ->
+            val keySet = myProducts.keySet()
+            val iterator = keySet.iterator()
+            while (iterator.hasNext()){
+                val next = iterator.next()
+                val value = myProducts.get(next).asJsonObject
+                erroCallBack(next,value)
+            }
+        })
+    }
 
     /**
      * 订阅数据

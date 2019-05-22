@@ -9,6 +9,7 @@ abstract class BaseViewModel<K : BaseRepository>(application: Application) : And
     var mRepository: K
 
     var liveData: MediatorLiveData<JsonObject> = MediatorLiveData()
+    var erroLiveData: MediatorLiveData<JsonObject> = MediatorLiveData()
 
     protected abstract val resitory: K
 
