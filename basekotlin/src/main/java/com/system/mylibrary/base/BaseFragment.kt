@@ -122,13 +122,15 @@ abstract class BaseFragment : SupportFragment() {
      * @param key
      */
     protected abstract fun dataCallBack(key: String, value: JsonObject)
+
     /**
      * 接口加载失败回调
      * @param key
      */
-    open fun erroCallBack(key: String, value: JsonObject){
+    open fun erroCallBack(key: String, value: JsonObject) {
 
     }
+
     /**
      * 订阅加载失败数据
      * @param liveData
@@ -137,10 +139,10 @@ abstract class BaseFragment : SupportFragment() {
         liveData.observe(this, Observer { myProducts ->
             val keySet = myProducts.keySet()
             val iterator = keySet.iterator()
-            while (iterator.hasNext()){
+            while (iterator.hasNext()) {
                 val next = iterator.next()
                 val value = myProducts.get(next).asJsonObject
-                erroCallBack(next,value)
+                erroCallBack(next, value)
             }
         })
     }
@@ -151,15 +153,14 @@ abstract class BaseFragment : SupportFragment() {
      */
     protected fun subscribeUi(liveData: LiveData<JsonObject>) {
         liveData.observe(this, Observer { myProducts ->
-            liveData.observe(this, Observer { myProducts ->
-                val keySet = myProducts.keySet()
-                val iterator = keySet.iterator()
-                while (iterator.hasNext()){
-                    val next = iterator.next()
-                    val value = myProducts.get(next).asJsonObject
-                    dataCallBack(next,value)
-                }
-            })})
+            val keySet = myProducts.keySet()
+            val iterator = keySet.iterator()
+            while (iterator.hasNext()) {
+                val next = iterator.next()
+                val value = myProducts.get(next).asJsonObject
+                dataCallBack(next, value)
+            }
+        })
     }
 
     /**
