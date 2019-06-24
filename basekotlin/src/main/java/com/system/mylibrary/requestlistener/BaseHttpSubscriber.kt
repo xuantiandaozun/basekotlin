@@ -41,7 +41,7 @@ class BaseHttpSubscriber(
     override fun onNext(t: Any) {
         val gson = Gson()
         val json = gson.toJson(t)
-        if (json.contains("登录过期")) {
+        if ("登录过期" in json) {
             val intent = Intent("com.system.main")
             intent.putExtra("name", "logout")
             BaseMainApp.context!!.sendBroadcast(intent)
