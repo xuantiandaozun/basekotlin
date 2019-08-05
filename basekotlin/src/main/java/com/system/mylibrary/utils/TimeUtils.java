@@ -262,15 +262,9 @@ public class TimeUtils {
         String str = time;
         SimpleDateFormat formatDate = new SimpleDateFormat(format); // "MM-dd HH:mm"
         Date date = null;
-        try {
-            date = formatDate.parse(time);
-            str = formatDate.format(date);
-        } catch (ParseException e) {
-
-        }
-
+        date = new Date(Long.valueOf(time));
+        str = formatDate.format(date);
         return str;
-
     }
 
     public static String formatDateString(String format, String fromat2, String time) {
